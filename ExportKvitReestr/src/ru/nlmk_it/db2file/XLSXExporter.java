@@ -129,11 +129,6 @@ public final class XLSXExporter {
 			Workbook workbook = new XSSFWorkbook(in);
 			try {
 				
-//				if (!resultHasLines) {
-//					// Можете отрубить мне руки, но у меня нет времени переделывать!
-//					throw new RuntimeException();
-//				}
-				
 				Sheet sheet = workbook.getSheetAt(0);
 				int mergedRowNum = 0;
 				
@@ -180,11 +175,13 @@ public final class XLSXExporter {
 									
 									if (separateNumber > 0) {
 										String bd_lesk = bodySet.getString("BD_LESK");
+										String postal = bodySet.getString("POSTAL");
 										
 										// Реестр разделяется на файлы по separateNumber + ε строк.
 										next_reestr:
 										do {
-											if (!bd_lesk.equalsIgnoreCase(bodySet.getString("BD_LESK"))) {
+											if (!bd_lesk.equalsIgnoreCase(bodySet.getString("BD_LESK")) 
+													|| !postal.equalsIgnoreCase(bodySet.getString("POSTAL"))) {
 												company = getCompany(connection, areaQuery, bodySet.getString("BD_LESK"));
 												break next_reestr;
 											}

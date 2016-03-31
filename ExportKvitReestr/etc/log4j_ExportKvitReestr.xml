@@ -12,7 +12,7 @@
 
     <!--<appender name="MAIN" class="org.apache.log4j.FileAppender">-->
     <appender name="MAIN" class="ru.nlmk_it.db2file.dynamiclogger.NewLogForEachRunFileAppender">
-        <param name="File" value="log/detail.log"/>
+        <param name="File" value="log/ExportKvitReestr.log"/>
         <!--<param name="DatePattern" value="'.'yyyy-MM-dd-HH-mm'.log'"/> -->
         <param name="Append" value="false"/>
         <layout class="org.apache.log4j.PatternLayout">
