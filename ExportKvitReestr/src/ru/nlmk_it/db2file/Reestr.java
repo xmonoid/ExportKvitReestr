@@ -120,6 +120,9 @@ public final class Reestr {
 		if (bodyQuery.contains(":mkd_id")) {
 			bodyStatement.setFixedCHARAtName("mkd_id", arguments.getMkdId());
 		}
+		if (bodyQuery.contains(":blank_unk")) {
+			bodyStatement.setFixedCHARAtName("blank_unk", arguments.getBlankUnk());
+		}
 		
 		ResultSet bodySet = bodyStatement.executeQuery();
 		

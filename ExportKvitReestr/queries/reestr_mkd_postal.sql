@@ -35,6 +35,11 @@ select address      "ADDRESS",
                   from lcmccb.CM_KVEE_MKD_CSV t
                  where pdat = &pdat
                    and leskgesk = &pleskgesk
+                   and (&blank_unk = '-1' 
+                        or
+                        &blank_unk = '0' and trim(t.ls) is null
+                        or
+                        &blank_unk = '1' and trim(t.ls) is not null)
                    and ((&use_filter != '1'
                        and &mkd_id = '-1'
                        and leskgesk = &pleskgesk
