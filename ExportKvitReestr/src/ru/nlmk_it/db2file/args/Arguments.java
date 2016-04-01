@@ -70,6 +70,10 @@ public final class Arguments {
 			required=false)
 	private String mkd_id = "-1";
 	
+	@Parameter(names="-pblank_unk",
+			description="0 - счета с пустым УНК не выгружаются, 1 - выгружаются, -1 - похуй (default)")
+	private String blank_unk = "-1";
+	
 	static final DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 	
 	/**
@@ -163,6 +167,16 @@ public final class Arguments {
 		logger.trace("Invoke getExportDir()");
 		logger.trace("Return value -> " + exportDir.getAbsolutePath());
 		return exportDir;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public String getBlankUnk() {
+		logger.trace("Invoke getBlankUnk()");
+		logger.trace("Return value -> " + blank_unk);
+		return blank_unk;
 	}
 	
 	/**

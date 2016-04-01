@@ -24,7 +24,12 @@ select address      "ADDRESS",
                        t.bd_lesk
                   from lcmccb.CM_KVEE_MKD_CSV t
                  where pdat = &pdat
-                   and (&use_filter != '1'
+                   and (&blank_unk = '-1' 
+                        or
+                        &blank_unk = '0' and trim(t.ls) is null
+                        or
+                        &blank_unk = '1' and trim(t.ls) is not null)
+                   and ((&use_filter != '1'
                        and &mkd_id = '-1'
                        and leskgesk = &pleskgesk
                        and bd_lesk = &bd_lesk
@@ -41,7 +46,7 @@ select address      "ADDRESS",
                                              and exists (select null
                                                            from rusadm.ci_prem  pr
                                                           where pr.prem_id = bs.prem_id
-                                                            and pr.prnt_prem_id = &mkd_id)))
+                                                            and pr.prnt_prem_id = &mkd_id))))
                  order by t.bd_lesk,
                           upper(t.addressshort),
                           upper(t.address3),

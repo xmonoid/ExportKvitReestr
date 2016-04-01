@@ -24,6 +24,11 @@ select address      "ADDRESS",
                        t.bd_lesk
                   from lcmccb.cm_kvee_notmkd_csv t
                  where pdat = &pdat
+                   and (&blank_unk = '-1' 
+                        or
+                        &blank_unk = '0' and trim(t.ls) is null
+                        or
+                        &blank_unk = '1' and trim(t.ls) is not null)
                    and leskgesk = &pleskgesk
                     and bd_lesk = case &use_filter
                                    when 'true' then
